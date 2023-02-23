@@ -29,7 +29,7 @@
         const btn = document.querySelector("button");
         btn.addEventListener('click', sendPhoneNumber)
         function sendPhoneNumber() {
-            alert(tel)
+            window.webkit.messageHandler.HandlerName.postMessage(tel)
         }
     </script>
 </body>
