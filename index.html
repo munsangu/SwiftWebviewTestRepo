@@ -24,6 +24,15 @@
     <button>
         <a href="tel://01011111111">전화걸기</a>  
     </button>
+    <script>
+        const tel = document.querySelector("button a");
+        const btn = document.querySelector("button");
+        btn.addEventListener('click', sendPhoneNumber)
+        function sendPhoneNumber(phonenumber) {
+            var url = phonenumber
+            window.location.href = url
+        }
+    </script>
 </body>
 
 </html>
