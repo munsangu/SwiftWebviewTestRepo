@@ -7,9 +7,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; text-align: center; color: #FFF; }
-        body { display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 20px; min-height: 100vh; background-color: #222; }
-        a { color: #FFF; text-decoration: none; letter-spacing: 1px; background-color: #2598EB; border: none; border-radius: 20px; padding: 10px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+            color: #FFF;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+            min-height: 100vh;
+            background-color: #222;
+        }
+
+        a {
+            color: #FFF;
+            text-decoration: none;
+            letter-spacing: 1px;
+            background-color: #2598EB;
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+        }
+
+        .btn-upload {
+            width: 150px;
+            height: 30px;
+            background-color: #FFF;
+            border: 1px solid #4d4d4d;
+            border-radius: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-upload:hover {
+            background-color: #4d4d4d;
+            color: #FFF;
+        }
+
+        #file {
+            display: none;
+        }
     </style>
 </head>
 
@@ -23,12 +69,19 @@
 
     <div style="margin-top: 10px;">
         <a href="tel:010-1111-1111">전화걸기</a>
-        <a href="tel:010-2222-2222" style="background-color: #BB2649; margin-left: 10px;">전화걸기</a>  
+        <a href="tel:010-2222-2222" style="background-color: #BB2649; margin-left: 10px;">전화걸기</a>
     </div>
+
  
+    <label for="file">
+        <div class="btn-upload">파일 업로드하기</div>
+    </label>
+    <input type="file" name="file" id="file">
+
+
     <script>
         const tel = document.querySelector("button a");
-        alert(typeof(tel.href))
+        alert(typeof (tel.href))
         const btn = document.querySelector("button");
         btn.addEventListener('click', () => {
             window.webkit.messageHanders.phoneNumber.postMessage({
