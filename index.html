@@ -35,6 +35,15 @@
             padding: 10px;
         }
 
+        #naverTest {
+            color: #FFF;
+            background-color: #2DB400; 
+            padding: 10px;
+            border: none; 
+            border-radius: 20px; 
+            letter-spacing: 1px
+        }
+
         .btn-upload {
             width: 150px;
             height: 30px;
@@ -71,6 +80,10 @@
         <a href="tel:010-2222-2222" style="background-color: #BB2649; margin-left: 10px;">전화걸기</a>
     </div>
 
+    <div style="margin-top: 10px;">
+        <button id="naverTest">NAVER</button>
+    </div>
+
     <div id="siteOfPhoto"></div>
 
     <div style="margin-top: 10px;">
@@ -82,13 +95,11 @@
 
 
     <script>
-        const tel = document.querySelector("button a");
+        const tel = document.querySelector("a");
         alert(typeof (tel.href))
-        const btn = document.querySelector("button");
+        const btn = document.querySelector("#naverTest");
         btn.addEventListener('click', () => {
-            window.webkit.messageHanders.phoneNumber.postMessage({
-                'message': tel
-            })
+            location.href = "https://www.naver.com"    
         })
     </script>
 </body>
