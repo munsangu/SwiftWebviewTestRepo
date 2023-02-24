@@ -23,6 +23,7 @@
             gap: 20px;
             min-height: 100vh;
             background-color: #222;
+            position: relative;
         }
 
         a {
@@ -93,13 +94,25 @@
         <input type="file" name="file" id="file" accept="image/*">
     </div>
 
+    <div id="hiddenBox" style="background-color: #667ABA; padding: 30px; position: absolute;">
+        <h3>이것이 보이는 가??</h3>
+        <button style="color: #000; padding: 10px; margin-top: 20px;" id="hiddenCloseBTN">닫기</button>
+    </div>
+
 
     <script>
         const tel = document.querySelector("a");
-        alert(typeof (tel.href))
+        // alert(typeof (tel.href))
         const btn = document.querySelector("#naverTest");
+        const hiddenBOX = document.querySelector("#hiddenBox")
+        const hiddenBTN = document.querySelector("#hiddenCloseBTN")
         btn.addEventListener('click', () => {
             location.href = "https://m.naver.com"    
+        })
+        hiddenBTN.addEventListener('click', () => {
+            // alert("닫기")
+            hiddenBOX.style.display = "none"
+
         })
     </script>
 </body>
