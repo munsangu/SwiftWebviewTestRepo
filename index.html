@@ -36,7 +36,7 @@
             padding: 10px;
         }
 
-        #naverTest {
+        .naverLink {
             color: #FFF;
             background-color: #2DB400; 
             padding: 10px;
@@ -82,7 +82,7 @@
     </div>
 
     <div style="margin-top: 10px;">
-        <button id="naverTest">NAVER</button>
+        <a href="https://m.naver.com" class="naverLink">NAVER</a>
     </div>
 
     <div id="siteOfPhoto"></div>
@@ -103,12 +103,12 @@
     <script>
         const tel = document.querySelector("a");
         alert(tel)
-        const btn = document.querySelector("#naverTest");
+        // const btn = document.querySelector("#naverTest");
         const hiddenBOX = document.querySelector("#hiddenBox")
         const hiddenBTN = document.querySelector("#hiddenCloseBTN")
-        btn.addEventListener('click', () => {
-            location.href = "https://m.naver.com"    
-        })
+        // btn.addEventListener('click', () => {
+        //     location.href = "https://m.naver.com"    
+        // })
         hiddenBTN.addEventListener('click', () => {
             // alert("닫기")
             hiddenBOX.style.display = "none"
