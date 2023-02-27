@@ -90,7 +90,7 @@
     </div>
 
     <div style="margin-top: 10px;">
-        <input type="file" style=" color: #FFF; letter-spacing: 1px; border: none; border-radius: 20px; padding: 10px;" id="photoBTN" onchange="Reader(event)">
+        <input type="file" style=" color: #FFF; letter-spacing: 1px; border: none; border-radius: 20px; padding: 10px;" id="photoBTN" onchange="reader(event)">
     </div>
 
     <!-- <div id="hiddenBox" style="background-color: #667ABA; padding: 50px; position: absolute; top: 80px;">
@@ -155,48 +155,24 @@
     <script type="text/javascript">
         const tel = document.querySelector("a");
         alert(tel)
-        // const btn = document.querySelector("#naverTest");
         const hiddenBOX = document.querySelector("#hiddenBox")
         const hiddenBTN = document.querySelector("#hiddenCloseBTN")
         const imgBTN = document.querySelector("#photoBTN")
-        // btn.addEventListener('click', () => {
-        //     location.href = "https://m.naver.com"    
-        // })
-        // hiddenBTN.addEventListener('click', () => {
-        //     // alert("닫기")
-        //     hiddenBOX.style.display = "none"
-
-        // })
-        // imgBTN.addEventListener('click', selectImage)
-
-        // function selectImage() {
-        //     var input = document.createElement('input');
-        //     input.type = 'file';
-        //     input.accept = 'image/*';
-        //     input.onchange = function () {
-        //         var file = this.files[0];
-        //         console.log(file)
-        //         var reader = new FileReader();
-        //         console.log(reader)
-        //         reader.readAsDataURL(file);
-        //         reader.onload = function () {
-        //             window.webkit.messageHandlers.imageSelected.postMessage({
-        //                 'data': reader.result,
-        //                 'name': file.name,
-        //                 'type': file.type
-        //             });
-        //         };
-        //     };
-        //     input.click();
-        // }
-        var Reader = function(event) {
+        var reader = function(event) {
             var data = event.target
-
+            var file = event.target.files[0]
             var reader = new FileReader()
             reader.onload = function() {
                 var dataURL = reader.result
                 var img = document.getElementById("siteOfPhoto")
                 img.src = dataURL
+                if(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.imageSelected) {
+                    window.webkit.messageHandlers.imageSelected.postMessage({ 
+                        "data": dataURL,
+                        "name": file.name,
+                        "type": file.type
+                    })
+                }
             }
             reader.readAsDataURL(data.files[0])
         }
