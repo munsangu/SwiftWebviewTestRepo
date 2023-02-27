@@ -88,10 +88,7 @@
     <div id="siteOfPhoto"></div>
 
     <div style="margin-top: 10px;">
-        <label for="file">
-            <div class="btn-upload">파일 업로드하기</div>
-        </label>
-        <input type="file" name="file" id="file" accept="image/*">
+        <button style=" color: #FFF; letter-spacing: 1px; background-color: #F7E600; border: none; border-radius: 20px; padding: 10px;" id="photoBTN">이미지 올리기</button>
     </div>
 
     <div id="hiddenBox" style="background-color: #667ABA; padding: 50px; position: absolute; top: 80px;">
@@ -153,12 +150,13 @@
     </div>
 
 
-    <script>
+    <script type="text/javascript">
         const tel = document.querySelector("a");
         alert(tel)
         // const btn = document.querySelector("#naverTest");
         const hiddenBOX = document.querySelector("#hiddenBox")
         const hiddenBTN = document.querySelector("#hiddenCloseBTN")
+        const imgBTN = document.querySelector("#photoBTN")
         // btn.addEventListener('click', () => {
         //     location.href = "https://m.naver.com"    
         // })
@@ -167,6 +165,28 @@
             hiddenBOX.style.display = "none"
 
         })
+        imgBTN.addEventListener('click', selectImage)
+
+        function selectImage() {
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function () {
+                var file = this.files[0];
+                console.log(file)
+                var reader = new FileReader();
+                console.log(reader)
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                    window.webkit.messageHandlers.imageSelected.postMessage({
+                        'data': reader.result,
+                        'name': file.name,
+                        'type': file.type
+                    });
+                };
+            };
+            input.click();
+        }
     </script>
 </body>
 
