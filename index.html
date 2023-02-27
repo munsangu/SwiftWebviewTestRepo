@@ -85,16 +85,18 @@
         <a href="https://m.naver.com" class="naverLink">NAVER</a>
     </div>
 
-    <div id="siteOfPhoto"></div>
+    <div style="margin-top: 10px;">
+        <img id="siteOfPhoto">
+    </div>
 
     <div style="margin-top: 10px;">
-        <button style=" color: #FFF; letter-spacing: 1px; background-color: #F7E600; border: none; border-radius: 20px; padding: 10px;" id="photoBTN">이미지 올리기</button>
+        <input type="file" style=" color: #FFF; letter-spacing: 1px; border: none; border-radius: 20px; padding: 10px;" id="photoBTN" onchange="Reader(event)">
     </div>
 
-    <div id="hiddenBox" style="background-color: #667ABA; padding: 50px; position: absolute; top: 80px;">
+    <!-- <div id="hiddenBox" style="background-color: #667ABA; padding: 50px; position: absolute; top: 80px;">
         <h3>이것이 보이는 가??</h3>
         <button style="color: #000; padding: 10px; margin-top: 20px;" id="hiddenCloseBTN">닫기</button>
-    </div>
+    </div> -->
 
     <div>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro earum rem magnam modi quod quis, obcaecati amet exercitationem vitae quo animi maiores, iure nemo delectus labore corporis voluptatem quam ipsam.
@@ -160,33 +162,45 @@
         // btn.addEventListener('click', () => {
         //     location.href = "https://m.naver.com"    
         // })
-        hiddenBTN.addEventListener('click', () => {
-            // alert("닫기")
-            hiddenBOX.style.display = "none"
+        // hiddenBTN.addEventListener('click', () => {
+        //     // alert("닫기")
+        //     hiddenBOX.style.display = "none"
 
-        })
-        imgBTN.addEventListener('click', selectImage)
+        // })
+        // imgBTN.addEventListener('click', selectImage)
 
-        function selectImage() {
-            var input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'image/*';
-            input.onchange = function () {
-                var file = this.files[0];
-                console.log(file)
-                var reader = new FileReader();
-                console.log(reader)
-                reader.readAsDataURL(file);
-                reader.onload = function () {
-                    window.webkit.messageHandlers.imageSelected.postMessage({
-                        'data': reader.result,
-                        'name': file.name,
-                        'type': file.type
-                    });
-                };
-            };
-            input.click();
+        // function selectImage() {
+        //     var input = document.createElement('input');
+        //     input.type = 'file';
+        //     input.accept = 'image/*';
+        //     input.onchange = function () {
+        //         var file = this.files[0];
+        //         console.log(file)
+        //         var reader = new FileReader();
+        //         console.log(reader)
+        //         reader.readAsDataURL(file);
+        //         reader.onload = function () {
+        //             window.webkit.messageHandlers.imageSelected.postMessage({
+        //                 'data': reader.result,
+        //                 'name': file.name,
+        //                 'type': file.type
+        //             });
+        //         };
+        //     };
+        //     input.click();
+        // }
+        var Reader = function(event) {
+            var data = event.target
+
+            var reader = new FileReader()
+            reader.onload = function() {
+                var dataURL = reader.result
+                var img = document.getElementById("siteOfPhoto")
+                img.src = dataURL
+            }
+            reader.readAsDataURL(data.files[0])
         }
+    
     </script>
 </body>
 
