@@ -151,7 +151,10 @@
     //         }
     //         reader.readAsDataURL(input.files[0])
     //     }
-    // }    
+    // }
+    document.querySelector('input[type="file"]').addEventListener('click', function() {
+        window.webkit.messageHandlers.ios.postMessage('chooseFile');
+    });    
     </script>
 </body>
 
