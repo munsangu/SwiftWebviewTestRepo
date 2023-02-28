@@ -98,7 +98,8 @@
     </div>
 
     <div style="margin-top: 10px;">
-        <input type="file" style=" color: #FFF; letter-spacing: 1px; border: none; border-radius: 20px; padding: 10px;" id="photoBTN" onchange="reader(event)">
+        <!-- <input type="file" style=" color: #FFF; letter-spacing: 1px; border: none; border-radius: 20px; padding: 10px;" id="photoBTN" onchange="reader(event)"> -->
+        <input type="file" style=" color: #FFF; letter-spacing: 1px; border: none; border-radius: 20px; padding: 10px;" id="photoBTN">
     </div>
 
     <!-- <div id="hiddenBox" style="background-color: #667ABA; padding: 50px; position: absolute; top: 80px;">
@@ -123,34 +124,34 @@
 
     const tel = document.querySelector("a");
     alert(tel)
-    const hiddenBOX = document.querySelector("#hiddenBox")
-    const hiddenBTN = document.querySelector("#hiddenCloseBTN")
-    const imgBTN = document.querySelector("#photoBTN")
-    function reader(event) {
-        const input = event.target
-        if(input.files && input.files[0]) {
-            const reader = new FileReader()
-            reader.onload = function() {
-                const dataUrl = reader.result
-                const base64Idx = dataUrl.indexOf(";base64, ") + ";base64, ".length
-                const base64 = dataUrl.substring(base64Idx)
-                // console.log(base64)
-                alert(base64)
-                const name = input.files[0].name
-                const type = input.files[0].type
-                const divArea = document.querySelector("#siteOfPhoto")
-                divArea.src = reader.result
-                if(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.imageSelected) {
-                    window.webkit.messageHandlers.imageSelected.postMessage({
-                        "data": base64,
-                        "name": name,
-                        "type": type
-                    })
-                }
-            }
-            reader.readAsDataURL(input.files[0])
-        }
-    }    
+    // const hiddenBOX = document.querySelector("#hiddenBox")
+    // const hiddenBTN = document.querySelector("#hiddenCloseBTN")
+    // const imgBTN = document.querySelector("#photoBTN")
+    // function reader(event) {
+    //     const input = event.target
+    //     if(input.files && input.files[0]) {
+    //         const reader = new FileReader()
+    //         reader.onload = function() {
+    //             const dataUrl = reader.result
+    //             const base64Idx = dataUrl.indexOf(";base64, ") + ";base64, ".length
+    //             const base64 = dataUrl.substring(base64Idx)
+    //             // console.log(base64)
+    //             alert(base64)
+    //             const name = input.files[0].name
+    //             const type = input.files[0].type
+    //             const divArea = document.querySelector("#siteOfPhoto")
+    //             divArea.src = reader.result
+    //             if(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.imageSelected) {
+    //                 window.webkit.messageHandlers.imageSelected.postMessage({
+    //                     "data": base64,
+    //                     "name": name,
+    //                     "type": type
+    //                 })
+    //             }
+    //         }
+    //         reader.readAsDataURL(input.files[0])
+    //     }
+    // }    
     </script>
 </body>
 
