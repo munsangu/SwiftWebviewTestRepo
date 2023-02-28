@@ -180,6 +180,8 @@
                 const dataUrl = reader.result
                 const base64Idx = dataUrl.indexOf(";base64, ") + ";base64, ".length
                 const base64 = dataUrl.substring(base64Idx)
+                // console.log(base64)
+                alert(base64)
                 const name = input.files[0].name
                 const type = input.files[0].type
                 const divArea = document.querySelector("#siteOfPhoto")
