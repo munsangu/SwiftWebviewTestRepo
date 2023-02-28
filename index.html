@@ -153,34 +153,46 @@
 
 
     <script type="text/javascript">
-        document.cookie = "id: 1234, password: 1234"
+    // 쿠키 생성 함수
+    function createCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        let date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + value + expires + "; path=/";
+    }
 
-        const tel = document.querySelector("a");
-        alert(tel)
-        const hiddenBOX = document.querySelector("#hiddenBox")
-        const hiddenBTN = document.querySelector("#hiddenCloseBTN")
-        const imgBTN = document.querySelector("#photoBTN")
-        function reader(event) {
-            const input = event.target
-            if(input.files && input.files[0]) {
-                const reader = new FileReader()
-                reader.onload = function() {
-                    const dataUrl = reader.result
-                    const base64Idx = dataUrl.indexOf(";base64, ") + ";base64, ".length
-                    const base64 = dataUrl.substring(base64Idx)
-                    const name = input.files[0].name
-                    const type = input.files[0].type
-                    if(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.imageSelected) {
-                        window.webkit.messageHandlers.imageSelected.postMessage({
-                            "data": base64,
-                            "name": name,
-                            "type": type
-                        })
-                    }
+    // 쿠키 생성
+    createCookie("userInfo", "1234", 7); // 쿠키 이름: myCookie, 쿠키 값: myValue, 쿠키 유효 기간: 7일
+
+    const tel = document.querySelector("a");
+    alert(tel)
+    const hiddenBOX = document.querySelector("#hiddenBox")
+    const hiddenBTN = document.querySelector("#hiddenCloseBTN")
+    const imgBTN = document.querySelector("#photoBTN")
+    function reader(event) {
+        const input = event.target
+        if(input.files && input.files[0]) {
+            const reader = new FileReader()
+            reader.onload = function() {
+                const dataUrl = reader.result
+                const base64Idx = dataUrl.indexOf(";base64, ") + ";base64, ".length
+                const base64 = dataUrl.substring(base64Idx)
+                const name = input.files[0].name
+                const type = input.files[0].type
+                if(window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.imageSelected) {
+                    window.webkit.messageHandlers.imageSelected.postMessage({
+                        "data": base64,
+                        "name": name,
+                        "type": type
+                    })
                 }
-                reader.readAsDataURL(input.files[0])
             }
-        }    
+            reader.readAsDataURL(input.files[0])
+        }
+    }    
     </script>
 </body>
 
